@@ -116,32 +116,6 @@ impl SnapchatData {
     }
 }
 
-//{"From": "Felix422", "Media Type": "TEXT", "Created": "2021-01-01 12:00:00 UTC", "Text": "Test Message"}
-#[derive(Debug, Deserialize, Serialize, Clone, PartialEq)]
-pub struct RecievedSavedChat {
-    #[serde(rename = "From")]
-    pub from: String,
-    #[serde(rename = "Media Type")]
-    pub media_type: MediaType,
-    #[serde(rename = "Created", with = "crate::timestamp")]
-    pub created: DateTime<Utc>,
-    #[serde(rename = "Text")]
-    pub text: String,
-}
-
-//{"To": "Felix422", "Media Type": "TEXT", "Created": "2021-01-01 12:00:00 UTC", "Text": "Test Message"}
-#[derive(Debug, Deserialize, Serialize, Clone, PartialEq)]
-pub struct SentSavedChat {
-    #[serde(rename = "To")]
-    pub to: String,
-    #[serde(rename = "Media Type")]
-    pub media_type: MediaType,
-    #[serde(rename = "Created", with = "crate::timestamp")]
-    pub created: DateTime<Utc>,
-    #[serde(rename = "Text")]
-    pub text: String,
-}
-
 /// Type of message
 #[derive(Debug, Deserialize, Serialize, Copy, Clone, PartialEq)]
 pub enum MediaType {
