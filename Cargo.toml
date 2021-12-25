@@ -1,7 +1,11 @@
 [package]
 name = "snapchat-log-parser"
+authors = ["Felix422"]
 version = "0.1.2"
 edition = "2021"
+description = "A simple crate to parse Snapchat chat logs"
+license = "MIT"
+keywords = ["snapchat"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
