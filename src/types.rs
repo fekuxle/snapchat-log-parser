@@ -1,7 +1,9 @@
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
+use serde_with::rust::string_empty_as_none;
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+//#[serde_with]
 #[serde(untagged)]
 pub enum Message {
     Sent {     
@@ -11,8 +13,8 @@ pub enum Message {
         media_type: MediaType,
         #[serde(rename = "Created", with = "crate::timestamp")]
         created_at: DateTime<Utc>,
-        #[serde(rename = "Text")]
-        text: String,
+        #[serde(rename = "Text", with = "string_empty_as_none")]
+        text: Option<String>,
     },
     Recieved {
         #[serde(rename = "From")]
@@ -21,8 +23,8 @@ pub enum Message {
         media_type: MediaType,
         #[serde(rename = "Created", with = "crate::timestamp")]
         created_at: DateTime<Utc>,
-        #[serde(rename = "Text")]
-        text: String,
+        #[serde(rename = "Text", with = "string_empty_as_none")]
+        text: Option<String>,
     }
 }
 
@@ -45,7 +47,7 @@ impl Message {
             Self::Sent { created_at, .. } => created_at.clone(),
         }
     }
-    pub fn text(&self) -> String {
+    pub fn text(&self) -> Option<String> {
         match self {
             Self::Recieved { text, .. } => text.clone(),
             Self::Sent { text, ..} => text.clone()

@@ -15,7 +15,7 @@ lazy_static!(
                     ),
                     Utc
                 ),
-                text: String::from("Test Message")
+                text: Some(String::from("Test Message"))
             }
         ],
         saved_sent: vec![
@@ -29,7 +29,7 @@ lazy_static!(
                     ),
                     Utc
                 ),
-                text: String::from("Test Message")
+                text: Some(String::from("Test Message"))
             }
         ]
     };
@@ -58,5 +58,5 @@ fn getters() {
         ),
         Utc
     ));
-    assert_eq!(DATA.saved_recieved[0].text(), String::from("Test Message"));
+    assert_eq!(DATA.saved_recieved[0].text(), Some(String::from("Test Message")));
 }
