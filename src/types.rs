@@ -88,11 +88,12 @@ impl SnapchatData {
     /// Parse a chat log file from a Reader
     /// # Examples 
     /// 
-    /// ```
+    /// ```no_run
     /// use std::fs::File;
     /// use std::io::Read;
+    /// use snapchat_log_parser::types::SnapchatData;
     /// 
-    /// let mut file = File::open("foo.txt")?;
+    /// let mut file = File::open("foo.txt").unwrap();
     /// let data = SnapchatData::from_reader(file).unwrap();
     /// ```
     pub fn from_reader<R: std::io::Read>(rdr: R) -> serde_json::Result<Self> {
@@ -102,6 +103,8 @@ impl SnapchatData {
     /// # Examples
     /// 
     /// ```
+    /// use snapchat_log_parser::types::SnapchatData;
+    /// 
     /// // example data
     /// let json = r#"
     ///     {
