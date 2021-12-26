@@ -3,6 +3,7 @@
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use serde_with::rust::string_empty_as_none;
+use std::collections::HashSet;
 
 /// Enum for message types
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
@@ -130,6 +131,17 @@ impl SnapchatData {
         // sort messages
         combined.sort_by(|a, b| a.created_at().partial_cmp(&b.created_at()).unwrap());
         combined
+    }
+    /// Gets a list of all users that are in the logs
+    pub fn get_user_list(&self) -> HashSet<String> {
+        let mut users = HashSet::new();
+        for x in &self.saved_recieved {
+            users.insert(x.recipient());
+        }
+        for x in &self.saved_sent {
+            users.insert(x.recipient());
+        }
+        users
     }
 }
 
