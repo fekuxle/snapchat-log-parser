@@ -1,3 +1,6 @@
+![license](https://img.shields.io/crates/l/snapchat-log-parser) 
+![crates.io version](https://img.shields.io/crates/v/snapchat-log-parser)
+
 # Snapchat log parser
 
 A simple crate to parse Snapchat chat logs
