@@ -117,6 +117,20 @@ impl SnapchatData {
     pub fn from_str<'a>(s: &'a str) -> serde_json::Result<Self> {
         serde_json::from_str(s)
     }
+    /// Gets all messages from the chat with a specific user and sorts them
+    pub fn get_user_chats(self, user: &str) -> Vec<Message> {
+        let predicate = |x: &Message| x.recipient() == user;
+
+        // filter both vectors to only include messages in a specific chat
+        let rec = self.saved_recieved.into_iter().filter(&predicate);
+        let sent = self.saved_sent.into_iter().filter(&predicate);
+
+        // combine iterators
+        let mut combined: Vec<Message> = rec.chain(sent).collect();
+        // sort messages
+        combined.sort_by(|a, b| a.created_at().partial_cmp(&b.created_at()).unwrap());
+        combined
+    }
 }
 
 /// Type of message

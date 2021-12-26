@@ -6,6 +6,7 @@ edition = "2021"
 description = "A simple crate to parse Snapchat chat logs"
 license = "MIT"
 keywords = ["snapchat"]
+repository = "https://github.com/Felix422/snapchat-log-parser"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
